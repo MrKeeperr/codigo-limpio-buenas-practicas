@@ -6,11 +6,11 @@ namespace ToDo
     internal class Program
     {
         //este nombre no indica nada, debe cambiarse
-        public static List<string> TaskList { get; set; } //o también ListOfTasks
+        public static List<string> TaskList { get; set; } = new List<string>();//o también ListOfTasks
 
         static void Main(string[] args)
         {
-            TaskList = new List<string>();
+            //TaskList = new List<string>();
             int menuSelected = 0; //el nombre variable no indica nada
             do
             {
@@ -60,9 +60,9 @@ namespace ToDo
                 int indexToRemove = Convert.ToInt32(removerTarea) - 1;
                 if (indexToRemove > -1 && TaskList.Count > 0)
                 {
-                    string tareaRemovida = TaskList[indexToRemove];
+                    //string tareaRemovida = TaskList[indexToRemove];
                     TaskList.RemoveAt(indexToRemove);
-                    Console.WriteLine("Tarea " + tareaRemovida + " eliminada");
+                    Console.WriteLine($"Tarea {TaskList[indexToRemove]} eliminada");
                 }
                 else if (indexToRemove > TaskList.Count - 1 || indexToRemove < 0)
                 {
@@ -94,17 +94,18 @@ namespace ToDo
 
         public static void ShowTaskList()
         {
-            if (TaskList == null || TaskList.Count == 0)
-            {
-                Console.WriteLine("No hay tareas por realizar");
-            }
-            else
+            //if (TaskList == null || TaskList.Count == 0)
+            if (TaskList?.Count > 0) //operador null, el signo de pregunta verifica si es null o no, supongo que en caso de ser nulo entra en el else
             {
                 Console.WriteLine("----------------------------------------");
                 var indexTask = 1;
                 //dentro del foreach utiliza una expresion lambda
                 TaskList.ForEach(task=> Console.WriteLine($"{indexTask++}. {task}"));
                 Console.WriteLine("----------------------------------------");
+            }
+            else
+            {
+                Console.WriteLine("No hay tareas por realizar");
             }
         }
     }
