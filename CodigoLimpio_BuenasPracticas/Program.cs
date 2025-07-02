@@ -15,19 +15,19 @@ namespace ToDo
             do
             {
                 menuSelected = ShowMainMenu();
-                if (menuSelected == 1)
+                if ((MenuOptions)menuSelected == MenuOptions.AddTask)
                 {
                     ShowMenuAdd();
                 }
-                else if (menuSelected == 2)
+                else if ((MenuOptions)menuSelected == MenuOptions.RemoveTask)
                 {
                     ShowRemoveMenu(); //showmenudos tampoco indica nada, tocaba leer el metodo para saber que hacía
                 }
-                else if (menuSelected == 3)
+                else if ((MenuOptions)menuSelected == MenuOptions.ShowTasks)
                 {
                     ShowTaskListMenu(); //lo mismo que lo anterior
                 }
-            } while (menuSelected != 4);
+            } while ((MenuOptions)menuSelected != MenuOptions.Exit);
         }
         /// <summary>
         /// Show the main menu 
@@ -96,7 +96,7 @@ namespace ToDo
             if (TaskList == null || TaskList.Count == 0)
             {
                 Console.WriteLine("No hay tareas por realizar");
-            } 
+            }
             else
             {
                 Console.WriteLine("----------------------------------------");
@@ -107,5 +107,14 @@ namespace ToDo
                 Console.WriteLine("----------------------------------------");
             }
         }
+    }
+
+    // Es recomendable utilizar enums para evitar los magic numbers
+    public enum MenuOptions
+    {
+        AddTask = 1,
+        RemoveTask = 2,
+        ShowTasks = 3,
+        Exit = 4
     }
 }
