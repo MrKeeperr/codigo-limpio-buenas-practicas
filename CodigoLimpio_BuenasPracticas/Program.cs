@@ -64,9 +64,16 @@ namespace ToDo
                     TaskList.RemoveAt(indexToRemove);
                     Console.WriteLine("Tarea " + tareaRemovida + " eliminada");
                 }
+                else if (indexToRemove > TaskList.Count - 1 || indexToRemove < 0)
+                {
+                    Console.WriteLine("Tarea no encontrada");
+                } 
             }
+            //puedes añadir la declaracion ex para mandar un mensaje al programador
             catch (Exception)
             {
+                Console.WriteLine("Ha ocurrido un error al eliminar la tarea.");
+
             }
         }
 
@@ -81,6 +88,7 @@ namespace ToDo
             }
             catch (Exception)
             {
+                Console.WriteLine("Ha ocurrido un error al registrar la tarea.");
             }
         }
 
