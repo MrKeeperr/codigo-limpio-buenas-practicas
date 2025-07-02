@@ -5,12 +5,10 @@ namespace ToDo; //no es necesario encerrar el codigo entero con el namespace
 
 internal class Program
 {
-    //este nombre no indica nada, debe cambiarse
-    public static List<string> TaskList { get; set; } = new List<string>();//o también ListOfTasks
+    public static List<string> TaskList { get; set; } = new List<string>();
 
     static void Main(string[] args)
     {
-        //TaskList = new List<string>();
         int menuSelected = 0; //el nombre variable no indica nada
         do
         {
@@ -29,10 +27,7 @@ internal class Program
             }
         } while ((MenuOptions)menuSelected != MenuOptions.Exit);
     }
-    /// <summary>
-    /// Show the main menu 
-    /// </summary>
-    /// <returns>Returns option indicated by user</returns>
+
     public static int ShowMainMenu()
     {
         Console.WriteLine("----------------------------------------");
@@ -42,7 +37,6 @@ internal class Program
         Console.WriteLine("3. Tareas pendientes");
         Console.WriteLine("4. Salir");
 
-        // Read line
         string peticionARealizar = Console.ReadLine();
         return Convert.ToInt32(peticionARealizar);
     }
@@ -52,15 +46,12 @@ internal class Program
         try
         {
             Console.WriteLine("Ingrese el número de la tarea a remover: ");
-            // Show current taks
+
             ShowTaskList();
 
-            string removerTarea = Console.ReadLine();
-            // Remove one position
-            int indexToRemove = Convert.ToInt32(removerTarea) - 1;
+            int indexToRemove = Convert.ToInt32(Console.ReadLine()) - 1;
             if (indexToRemove > -1 && TaskList.Count > 0)
             {
-                //string tareaRemovida = TaskList[indexToRemove];
                 TaskList.RemoveAt(indexToRemove);
                 Console.WriteLine($"Tarea {TaskList[indexToRemove]} eliminada");
             }
@@ -94,7 +85,6 @@ internal class Program
 
     public static void ShowTaskList()
     {
-        //if (TaskList == null || TaskList.Count == 0)
         if (TaskList?.Count > 0) //operador null, el signo de pregunta verifica si es null o no, supongo que en caso de ser nulo entra en el else
         {
             Console.WriteLine("----------------------------------------");
