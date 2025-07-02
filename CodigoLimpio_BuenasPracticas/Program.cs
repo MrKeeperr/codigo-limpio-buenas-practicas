@@ -93,10 +93,9 @@ namespace ToDo
             else
             {
                 Console.WriteLine("----------------------------------------");
-                for (int i = 0; i < TaskList.Count; i++)
-                {
-                    Console.WriteLine((i + 1) + ". " + TaskList[i]);
-                }
+                var indexTask = 1;
+                //dentro del foreach utiliza una expresion lambda
+                TaskList.ForEach(task=> Console.WriteLine($"{indexTask++}. {task}"));
                 Console.WriteLine("----------------------------------------");
             }
         }
